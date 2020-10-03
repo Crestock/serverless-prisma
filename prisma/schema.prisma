@@ -18,7 +18,7 @@ enum Currency {
 
 model Material {
 
-  id       Int     @default(autoincrement()) @id
+  id       Int     @id @default(autoincrement())
   name     String  @unique
   supplier User[]
   price    Price[]
@@ -30,7 +30,7 @@ model Material {
 //Price model
 //Contains the price quote for each material and the author of the quote
 model Price {
-  id         Int      @default(autoincrement()) @id
+  id         Int      @id @default(autoincrement())
   value      Float
   currency   Currency @default(GBP)
   author     User     @relation(fields: [authorId], references: [id])
@@ -40,11 +40,18 @@ model Price {
 }
 
 model User {
-  id        Int        @default(autoincrement()) @id
+  id        Int        @id @default(autoincrement())
   email     String     @unique
   password  String     @default("")
   name      String?
   stripeId  String?
   materials Material[]
   price     Price[]
+}
+
+//early alpha signup
+
+model RegisterInterest {
+  id    String @id @default(uuid())
+  email String
 }

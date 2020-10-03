@@ -77,6 +77,7 @@ export const Mutation = mutationType({
     //
     t.crud.createOnePrice()
     //
+    t.crud.createOneRegisterInterest()
 
     t.field('createMaterial', {
       type: 'Material',
