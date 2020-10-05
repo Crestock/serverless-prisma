@@ -1,4 +1,4 @@
-import { enumType, floatArg, objectType } from '@nexus/schema'
+import { enumType, floatArg, intArg, objectType } from '@nexus/schema'
 
 export const unitInputEnum = enumType({
   name: 'Units',
@@ -63,6 +63,16 @@ export const Price = objectType({
         }
         return null
         //find the mass of metal via mass = volume * density
+      },
+    })
+    t.float('quantity', {
+      args: {
+        quantity: intArg(),
+      },
+      nullable: true,
+      async resolve(_, { quantity }, ctx) {
+        console.log(ctx)
+        return quantity
       },
     })
   },
